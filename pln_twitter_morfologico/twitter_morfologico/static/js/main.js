@@ -12,5 +12,19 @@ $( document ).ready(function() {
 });
 
 function send_tweet(tweet_msg){
-    console.log(tweet_msg);
+    
+    var token = $("input[name=csrfmiddlewaretoken]").val()
+
+    $.ajax({
+        url: 'tweet_processing/',
+        type: 'POST',
+        data: {
+          'tweet_msg': tweet_msg,
+          'csrfmiddlewaretoken': token
+        },
+        dataType: 'json',
+        success: function (data) {
+          console.log(data);
+        }
+      });
 }
