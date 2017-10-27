@@ -2,6 +2,8 @@ $( document ).ready(function() {
     
     $('#btn_send_tweet').on('click', function(){
         var tweet_msg = $('#textarea_tweet').val();
+        $('#div_result').html(' ');
+        $('#div_result').html('<img src=\'../images/cargando.gif\'/>');
         send_tweet(tweet_msg);
     });
 
@@ -25,6 +27,7 @@ function send_tweet(tweet_msg){
         },
         dataType: 'json',
         success: function (data) {
+            
             console.log(data);
             var html = "";
             
@@ -37,7 +40,7 @@ function send_tweet(tweet_msg){
                 html += '<thead>';
                 html += '<tr>';
                 html += '<th class=\'col-sm-6\'>Palabra</th>';
-                html += '<th class=\'col-sm-6\'>'+word_morfo[i]+'</th>';
+                html += '<th class=\'col-sm-6\'>'+word_morfo[0]+'</th>';
                 html += '</tr>';
                 html += '</thead>';
                 html += '<tbody>';
@@ -47,8 +50,7 @@ function send_tweet(tweet_msg){
                     html += '<th class=\'col-sm-6\'></th>';
                     html += '<th class=\'col-sm-6\'>'+word_morfo[j]+'</th>';
                     html += '</tr>';
-                }
-                    
+                }                    
 
                 html += '</tbody>';
                 html += '</table>';
