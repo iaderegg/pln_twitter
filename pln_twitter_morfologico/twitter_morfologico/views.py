@@ -9,6 +9,7 @@ from django.http import JsonResponse
 from nltk.tokenize import TweetTokenizer
 
 import commands
+#import freeling
 
 def index(request):
     template = loader.get_template('twitter_morfologico/index.html')
@@ -26,8 +27,9 @@ def tweet_processing(request):
     result_morfo = []
 
     for w in result:
-        print('echo "'+ w +'" | analyze \\xe2\\x80\\x93 analyze -f /usr/share/freeling/config/es.cfg')
-        result_morfo.append(commands.getoutput('echo \''+ w +'\' | analyze \\xe2\\x80\\x93 analyze -f /usr/share/freeling/config/es.cfg'))
+        #print(w.get_form()+" "+w.get_lemma()+" "+w.get_tag()+" "+w.get_senses_string())
+        print('echo "'+ w +'" | analyze \\xe2\\x80\\x93 analyze -f /usr/local/share/freeling/config/es.cfg')
+        result_morfo.append(commands.getoutput('echo \''+ w +'\' | analyze \\xe2\\x80\\x93 analyze -f /usr/local/share/freeling/config/es.cfg'))
 
     data = {
         'result': result,
