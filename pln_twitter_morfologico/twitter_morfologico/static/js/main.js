@@ -200,8 +200,169 @@ function trans_tag(tag){
                 A: 'Aumentativo',
                 D: 'Diminutivo'
             }
-        }
-    }
+        },
+        V:{
+            1:{
+                atributo: 'Categoria',
+                V: 'Verbo'
+            },
+            2:{
+                atributo: 'Tipo',
+                M: 'Principal',
+                A: 'Auxiliar',
+                S: 'Semiauxiliar'
+            },
+            3:{
+                atributo: 'Modo',
+                I: 'Indicativo',
+                S: 'Subjuntivo',
+                M: 'Imperativo',
+                N: 'Infinitivo',
+                G: 'Gerundio',
+                P: 'Participio'
+            },
+            4:{
+                atributo: 'Tiempo',
+                P: 'Presente',
+                I: 'Imperfecto',
+                F: 'Futuro',
+                S: 'Pasado',
+                C: 'Condicional',
+                0: '-'
+            },
+            5:{
+                atributo: 'Persona',
+                1: 'Primera',
+                2: 'Segunda',
+                3: 'Tercera'
+            },
+            6:{
+                atributo: 'Número',
+                S: 'Singular',
+                P: 'Plural'
+            },
+            7:{
+                atributo: 'Género',
+                M: 'Masculino',
+                F: 'Femenino'
+            }
+        },
+        P:{
+            1:{
+                atributo: 'Categoria',
+                P: 'Pronombre'
+            },
+            2:{
+                atributo: 'Tipo',
+                P: 'Personal',
+                D: 'Demostrativo',
+                X: 'Posesivo',
+                I: 'Indefinido',
+                T: 'Interrogativo',
+                R: 'Relativo',
+                E: 'Exclamativo'
+            },
+            3:{
+                atributo: 'Persona',
+                1: 'Primera',
+                2: 'Segunda',
+                3: 'Tercera'
+            },
+            4:{
+                atributo: 'Género',
+                M: 'Masculino',
+                F: 'Femenino',
+                C: 'Común',
+                N: 'Neutro'
+            },
+            5:{
+                atributo: 'Número',
+                S: 'Singular',
+                P: 'Plural',
+                N: 'Impersonal/Invariable'
+            },
+            6:{
+                atributo: 'Caso',
+                N: 'Nominativo',
+                A: 'Acusativo',
+                D: 'Dativo',
+                O: 'Oblicuo'
+            },
+            7:{
+                atributo: 'Poseedor',
+                S: 'Singular',
+                P: 'Plural'
+            },
+            8:{
+                atributo: 'Politeness',
+                P: 'Polite',
+            }
+        },
+        C:{
+            1:{
+                atributo: 'Categoria',
+                C: 'Conjunciones'
+            },
+            2:{
+                atributo: 'Tipo',
+                C: 'Coordinada',
+                S: 'Subcoordinada'
+            }
+        },
+        I:{
+            1:{
+                atributo: 'Categoria',
+                C: 'Interjección'
+            }
+        },
+        S:{
+            1:{
+                atributo: 'Categoria',
+                P: 'Preposición'
+            },
+            2:{
+                atributo: 'Tipo',
+                P: 'Preposición'
+            },
+            3:{
+                atributo: 'Forma',
+                S: 'Simple',
+                C: 'Contraída'
+            },
+            4:{
+                atributo: 'Género',
+                M: 'Masculino'
+            },
+            5:{
+                atributo: 'Número',
+                S: 'Singular'
+            }
+        },
+        F:{
+            1:{
+                atributo: 'Categoria',
+                F: 'Signo de puntuación'
+            }
+        },
+        Z:{
+            1:{
+                atributo: 'Categoria',
+                Z: 'Numerales'
+            },
+            2:{
+                atributo: 'Tipo',
+                d: 'Partitivo',
+                p: 'Porcentaje',
+                u: 'Unidad'
+            }
+        },
+        W:{
+            1:{
+                atributo: 'Categoria',
+                W: 'Fechas y horas'
+            }
+        },
+    };
 
     for(var i=0; i<tag.length; i++) {
         attr = eagle_tags[tag.charAt(0)][i+1]['atributo'];
