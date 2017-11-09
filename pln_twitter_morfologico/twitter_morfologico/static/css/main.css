@@ -17,3 +17,13 @@
     width: 60px;
 }
 
+.textarea_result{
+    background-color: black;
+    color: white;
+    font-family: 'Roboto';
+}
+
+footer{
+    text-align: center;
+}
+

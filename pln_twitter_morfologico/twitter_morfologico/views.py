@@ -18,12 +18,37 @@ def index(request):
     }
     return render(request, 'twitter_morfologico/index.html', context)
 
+def tweet_tokenizer(request):
+    tweet = request.POST.get('tweet_msg')
+    tknzr = TweetTokenizer()
+
+    tweet_tknzd = tknzr.tokenize(tweet)
+
+    print(tweet_tknzd)
+
+    data = {
+        'tweet_msg': tweet,
+        'result_tknzr': tweet_tknzd
+    }
+
+    return JsonResponse(data)
+
+
+def word_processing(request):
+    word = request.POST.get('word')
+    result_freeling = commands.getoutput('echo \''+ word +'\' | analyze \\xe2\\x80\\x93 analyze -f /usr/local/share/freeling/config/es.cfg')
+    result = {
+        'word_analysis': result_freeling,
+        'word': word
+    }
+    return JsonResponse(result)
+
 def tweet_processing(request):
     tweet = request.POST.get('tweet_msg')
 
-    tknzr = TweetTokenizer()
+    #tknzr = TweetTokenizer()
 
-    result = tknzr.tokenize(tweet)
+    #result = tknzr.tokenize(tweet)
     result_morfo = []
 
     for w in result:

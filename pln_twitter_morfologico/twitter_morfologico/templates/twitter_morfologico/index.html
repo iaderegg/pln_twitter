@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="col-sm-4" id="site_header"></div>   
                 <div class="col-sm-7" id="title_header">
-                    <h1>Tokenizador y Analizador Morfólogico de Tweet's</h1>
+                    <h1>Tokenizador y Analizador Morfológico de Tweet's</h1>
                 </div>
             </div>
         </header>
@@ -44,10 +44,27 @@
         </div>
         
         <div class="container">
-            <div class="row" id="div_result">
-
+            <div class="row" id="div_tweet_tknzd">
+                <div class="form-group">
+                    <h4>Resultado TweetTokenizer</h4>
+                    <textarea class="form-control textarea_result" name="textarea_result" id="textarea_result_tknzr" rows="3"></textarea>
+                </div>
+            </div>
+            <hr>
+            <div class="row" id="div_result_morfoan">
+                <div class="form-group">
+                    <h4>Resultado Análisis Morfológico con FreeLing</h4>
+                    <textarea class="form-control textarea_result" name="textarea_result" id="textarea_result_steps_freeling" rows="3"></textarea>
+                </div>
             </div>
         </div>
+
+        <footer>
+            <div class="col-sm-6 col-sm-offset-3">
+                Procesamiento de Lenguaje Natural<br>
+                2017
+            </div>
+        </footer>
 
         <script src="{% static "js/jquery.min.js" %}"></script>
         <script src="{% static "bootstrap/js/bootstrap.min.js" %}"></script>

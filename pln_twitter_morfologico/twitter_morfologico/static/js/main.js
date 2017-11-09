@@ -4,7 +4,8 @@ $( document ).ready(function() {
         var tweet_msg = $('#textarea_tweet').val();
         $('#div_result').html(' ');
         $('#div_result').addClass('background_waiting');
-        send_tweet(tweet_msg);
+        result_tknzr = tokenize_tweet(tweet_msg);
+        
     });
 
     $('#btn_clean').on('click', function(){
@@ -13,6 +14,71 @@ $( document ).ready(function() {
     });
 
 });
+
+function tokenize_tweet(tweet_msg){
+
+    var token = $("input[name=csrfmiddlewaretoken]").val()
+    var result_tknzr = new Array();
+
+    var promise = $.ajax({
+        url: 'tweet_tokenizer/',
+        type: 'POST',
+        data: {
+        'tweet_msg': tweet_msg,
+        'csrfmiddlewaretoken': token
+        },
+        dataType: 'json',
+        success: function (data) {
+            var html = '{';            
+            for(var i = 0; i < data.result_tknzr.length; i++){
+                html += data.result_tknzr[i]
+                if(i != data.result_tknzr.length - 1){
+                    html += ', '    
+                }
+            }
+            html += '}';
+
+            $('#textarea_result_tknzr').val(html)
+
+            result_tknzr = data.result_tknzr
+            
+            return result_tknzr
+
+        },
+        error: function(data){
+            console.log(data);
+        }
+    })
+
+    promise.done(function(){
+        console.log(result_tknzr)
+        processing_tweet(result_tknzr)
+    });
+}
+
+function processing_tweet(result_tknzr){
+    
+    var token = $("input[name=csrfmiddlewaretoken]").val()
+
+    var promises = new Array()
+
+    for(var j = 0; j < result_tknzr.length; j++){
+        
+        $.ajax({
+            url: 'word_processing/',
+            type: 'POST',
+            data:{
+                'word': result_tknzr[j],
+                'csrfmiddlewaretoken': token
+            },
+            dataType: 'json',
+            success: function(result){
+                $('#textarea_result_steps_freeling').append(result.word_analysis)
+            },
+            async: true
+        })
+    }
+}
 
 function send_tweet(tweet_msg){
     
