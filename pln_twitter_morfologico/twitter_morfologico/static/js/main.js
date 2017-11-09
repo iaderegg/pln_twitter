@@ -20,7 +20,7 @@ function tokenize_tweet(tweet_msg){
     var token = $("input[name=csrfmiddlewaretoken]").val()
     var result_tknzr = new Array();
 
-    var promise = $.ajax({
+    $.ajax({
         url: 'tweet_tokenizer/',
         type: 'POST',
         data: {
@@ -41,19 +41,18 @@ function tokenize_tweet(tweet_msg){
             $('#textarea_result_tknzr').val(html)
 
             result_tknzr = data.result_tknzr
-            
-            return result_tknzr
 
         },
+        async: false,
         error: function(data){
             console.log(data);
         }
-    })
-
-    promise.done(function(){
+    }).then(function(){
         console.log(result_tknzr)
         processing_tweet(result_tknzr)
-    });
+    })
+
+
 }
 
 function processing_tweet(result_tknzr){
@@ -64,7 +63,7 @@ function processing_tweet(result_tknzr){
 
     for(var j = 0; j < result_tknzr.length; j++){
         
-        $.ajax({
+        promises.push($.ajax({
             url: 'word_processing/',
             type: 'POST',
             data:{
@@ -73,11 +72,17 @@ function processing_tweet(result_tknzr){
             },
             dataType: 'json',
             success: function(result){
-                $('#textarea_result_steps_freeling').append(result.word_analysis)
+                print_text(result.word_analysis)
             },
             async: true
-        })
+        }))
     }
+
+    //Promise.all(promises)
+}
+
+function print_text(text){
+    $('#textarea_result_steps_freeling').append(text)
 }
 
 function send_tweet(tweet_msg){
